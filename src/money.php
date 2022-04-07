@@ -22,7 +22,7 @@ class money
     }
 
 
-    public function setAmount(float $amount): void
+    private function setAmount(float $amount): void
     {
         $this->amount = $amount;
     }
@@ -34,24 +34,23 @@ class money
     }
 
 
-    public function setCurrency(string $currency): void
+    private function setCurrency(string $currency): void
     {
         $this->currency = $currency;
     }
 
-    public function equals(money $money)
+    public function equals(money $money): bool
     {
-        return $this->amount === $money->getAmount();
-        return $this->currency == $money->getCurrency();
+        return $this == $money;
     }
 
     public function add(money $money)
     {
-        if ($this->currency === $money->currency) {
-            return new money ($this->amount + $money->getAmount(), $money->getCurrency());
-        } else {
+        if ($this->currency !== $money->currency) {
             throw new \Exception('different currencies');
         }
+
+        return new money ($this->amount + $money->getAmount(), $money->getCurrency());
 
     }
 

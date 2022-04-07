@@ -18,7 +18,7 @@ class currency
         return $this->isoCode;
     }
 
-    public function setIsoCode(string $isoCode): void
+    private function setIsoCode(string $isoCode): void
     {
         $isoCode = strtoupper($isoCode);
         $this->validate($isoCode);
